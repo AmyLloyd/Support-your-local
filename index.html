@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/helpers.css">
+    <link href="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCtBPYMqlBJKHDOSjwGdjw7BcKgB1BQWlA">
+    <title>Support Your Local</title>
+    <!-- jQuery tag added here as it didn't work at the end of the body-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+
+  <body has-navbar-fixed-top>
+    <header>
+           
+      <!-- Hero holds title -->
+      <hero class="hero is-fullheight-with-navbar">
+        <div class="hero-head heading has-text-weight-bold is-size-7">
+          <nav class="navbar is-fixed-top ">
+            <div class="navbar-brand">
+                <a class="navbar-item has-text-black height-override" id="logo-nav">
+                  <img src="./assets/images/LOGO-04.png" style="width:6.25rem;height:5rem;" class="height-override" >
+                </a>
+                <!--navbar-burger must be last child-->
+                <!--navbar-burger appears for touch screen only-->
+                <a role="button" class="navbar-burger has-text-white" aria-label="menu" aria-expanded="false" data-target="navbar-items-menu">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <!--change background of menu to transparent in nav-burger-->
+            <div id="navbar-items-menu" class="navbar-menu transparent-background">
+              <div class="navbar-start">
+                 <a class="navbar-item has-text-white" id="home-nav">Home</a>
+                 <a class="navbar-item has-text-white" id="recipes-nav">Recipes</a>        
+        
+                 <a class="navbar-item has-text-white" id="about-nav">About us</a>  
+                 <a class="navbar-item has-text-white" id="contact-nav">Contact us</a> 
+              </div>
+    
+              <div class="navbar-end">
+                    <!--place holder for username to appear when logged in-->
+                    <div class="navbar-item has-text-success" id="user-placeholder"></div>                    
+                    <div class="buttons button-margins">
+                        <a id="root-signup-button" class="button  is-black js-code-trigger has-text-white" data-target="modal-sign-up">
+                          <strong>Sign up</strong>
+                        </a>
+                    </div>
+                    <div class="buttons button-margins">
+                        <a id="root-login-button" class="button js-code-trigger is-light has-text-success" data-target="modal-log-in">
+                          <strong>Log in</strong>
+                        </a>
+                    </div>
+                    <div class="buttons button-margins">
+                        <a id="root-logout-button" class="button js-code-trigger is-black has-text-white is-hidden" data-target="modal-log-out">
+                          <strong>Log out</strong>
+                        </a>
+                    </div>
+                    <!--empty div disables styling given to 'last element in nav bar' -->
+                    <div></div>
+                </div>
+              </div>
+            </div>    
+          </nav>
+
+      <!-- Add title -->
+        <div class="hero-body">
+          <div class="is-overlay has-text-centered" style="top: 400px">
+              <h1 class="title is-1 has-text-weight-bold has-text-white">Support Your <span class="has-text-success">Local</span></h1>
+              <br>
+              <h2 class="subtitle is-4 has-text-white extended-margin-for-message">From local grocers to you</h2>
+              <br>
+              <h2 class="subtitle is-4 has-text-white extended-margin-for-message">Find your local grocer below</h2>
+  <!--space for appending welcome message on sign up-->
+              <div id="subtitle">         
+              </div>
+          </div>
+        </div>  
+<!--html for the modal triggered by sign-up btn-->     
+        <div id="modal-sign-up" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Sign Up</p>
+              <button class="delete" aria-label="close"></button>
+            </header>
+            <section id="signup-body" class="modal-card-body">
+              <div class="field">
+                <label class="label">First Name</label>
+                <div class="control">
+                  <input class="input is-success" name="first-name" type="text" placeholder="e.g. John" value="">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Last Name</label>
+                <div class="control">
+                  <input class="input is-success" name="last-name" type="text" placeholder="e.g. Smith" value="">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input is-success" name="email" type="email" placeholder="email address" value="">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input class="input is-success" name="password" type="password" placeholder="type a password" value="">
+                </div>
+              </div>
+              <div class="field">
+                <label id="confirm-password-label" class="label">Confirm Password</label>
+                <div class="control">
+                  <input class="input is-success" name="confirm-password" type="password" placeholder="retype password" value="">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox" id="checkbox-label">
+                    <input id="agree-terms" type="checkbox">
+                    I agree to the 
+      <!--Link to terms and conditions page here. It needs to be in new window with no back button in order to keep dialog box with input open while user checks ts and cs-->
+                    <a id="terms-link">terms and conditions </a>
+                  </label>
+                  
+                </div>
+              </div>
+            </section>
+            <footer class="modal-class-foot">
+              <button id="signup-button" class="button is-success">Sign up</button>
+              <button class="button modal-cancel">Cancel</button>
+            </footer>
+          </div>
+        </div>
+<!-- end sign up modal code -->
+
+<!--html for the login-trigger modal-->     
+        <div id="modal-log-in" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Log in</p>
+              <button class="delete" aria-label="close"></button>
+            </header>
+            <section id="login-body" class="modal-card-body">
+              <!--email, password and remember me checkbox-->
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input is-success" name="email-login" type="email" placeholder="email address" value="">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input class="input is-success" name="password-login" type="password" placeholder="type password" value="">
+                </div>
+              </div>
+              <!--Remember me will link to localStorage later-->
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" id="remember-me">
+                    Remember me
+                  </label>
+                        
+                </div>
+              </div>
+            </section>
+            <footer class="modal-class-foot">
+              <button id= "login-button" class="button is-success">Log in</button>
+              <button class="button modal-cancel">Cancel</button>
+            </footer>
+          </div>
+        </div>
+  <!--end login trigger modal-->
+
+  <!--logout modal code-->
+        <div id="modal-log-out" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Log out</p>
+              <button class="delete" aria-label="close"></button>
+            </header>
+            <section id="logout-body" class="modal-card-body">
+              <div>Thanks for using our app!</div>
+              <div>We hope you keep enjoying your food shopping!</div>
+            </section>
+            <footer class="modal-class-foot">
+              <button id="see-ya-button" class="button is-success">See-ya next time!</button>
+              <button class="button modal-cancel">Cancel</button>
+            </footer>
+        </div>
+  <!--end of logout modal code-->
+
+      </hero>
+
+    </header>
+   
+    <main>
+<!--add map section-->
+      <div style="display: none">
+        <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location" />
+    
+        <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location" />
+
+        <div id="mode-selector" class="controls">
+          <input type="radio" name="type" id="changemode-walking" checked="checked" />
+          <label for="changemode-walking">Walking</label>
+
+          <input type="radio" name="type" id="changemode-transit" />
+          <label for="changemode-transit">Transit</label>
+
+          <input type="radio" name="type" id="changemode-driving" />
+          <label for="changemode-driving">Driving</label>
+        </div>
+      </div>
+
+      <div id="map" style="width:100%; height:1000px"></div>
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtBPYMqlBJKHDOSjwGdjw7BcKgB1BQWlA&callback=initMap&libraries=places&v=weekly"
+        defer
+      ></script>
+  <!--end map section-->
+
+    </main>
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/geocode/json?place_id=ChIJVSZzVR8FdkgRTyQkxxLQmVU&key=AIzaSyCtBPYMqlBJKHDOSjwGdjw7BcKgB1BQWlA&solution_channel=GMP_guides_productlocator_v1_a"></script>
+    <script src="./assets/google-maps.js"></script>
+    <script src="./assets/script.js"></script>
+    <script src="./assets/log-in.js"></script>
+
+  </body>
+
+</html>
