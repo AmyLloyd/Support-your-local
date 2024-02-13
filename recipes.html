@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/recipeAPIStyles.css">
+    <title>Recipes | Support Your Local</title>
+</head>
+<body class="has-background-dark" style="min-height: 100vh">
+
+  <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item image" href="index.html">
+        <img src="assets/images/LOGO-04.png" width="128" height="128">
+      </a>
+      <p class="navbar-item">
+        Support Your&nbsp <span class="has-text-success" style=" display:inline-block;">Local</span>
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-text-white" id="home-nav" href="index.html">Home</a>
+        <a class="navbar-item has-text-white has-text-weight-bold" id="recipes-nav" href="recipes.html">Recipes</a>                   
+        <a class="navbar-item has-text-white" id="about-nav" href="about.html">About us</a>  
+        <a class="navbar-item has-text-white" id="contact-nav" href="contact.html">Contact us</a> 
+  
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light">
+              Log in
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Temporary replace w/ framework -->
+    <section id="container"  class="container">
+
+        <div id="sortByContainer" class="pt-4">
+          <label for="sortBy" class="has-text-white">Sort By:</label>
+          <select name="sortBy" id="sortOptions">
+            <option value="null">Sort By</option>
+            <option value="Categories">Categories</option>
+            <option value="Area">Area</option>
+            <option value="Ingredients">Ingredients</option>   
+            </select>
+        </div>
+        <div id = "filterOptions" class="hidden">             
+          <label id = "filterOptionsLabel" for = "fOptions"></label>
+          <select name="fOptions" id="fOptionsList">
+            <option value=null>--Sort By--</option>
+          </select>
+        </div>
+        
+        
+        <hr>
+
+        <section id="meals-container" style="overflow:hidden";></section>
+      </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="assets/recipeAPI.js"></script>
+</body>
+</html>
